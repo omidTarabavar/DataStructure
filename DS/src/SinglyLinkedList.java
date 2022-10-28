@@ -1,6 +1,6 @@
 /**
  * @author omidTarabvar
- * NOTE: recur
+ * NOTE: tamrin bazgasht 2 tavasot tabe : reverseList piade sazi shode
  */
 public class SinglyLinkedList<E>{
 
@@ -136,19 +136,24 @@ public class SinglyLinkedList<E>{
         removeFirst();
         removeLast();
     }
-    public void reverseList(SinglyLinkedList<E> singlyLinkedList,Node<E> current,Node<E> previous){
-        Node<E> nextNode = current.next;
-        current.setNext(previous);
-        if(current == tail){
-            Node<E> temp = head;
-            head = tail;
-            tail = temp;
-        }else {
-            reverseList(singlyLinkedList,nextNode,current);
+
+    /*
+    ########################################## Tamrin bazgasht 2 ##########################################
+     */
+    public void reverseList(Node<E> current,Node<E> previous){
+        if(current != null) {
+            Node<E> nextNode = current.next;
+            current.setNext(previous);
+            if (current == tail) {
+                Node<E> temp = head;
+                head = tail;
+                tail = temp;
+            } else {
+                reverseList(nextNode, current);
+            }
         }
     }
     public static void main(String[] args) {
-        // yek list peyvandi ijad konid va item haii ra be an ezafe va az an hazf konid:
         SinglyLinkedList<Character> linkedList = new SinglyLinkedList<>();
         linkedList.addLast('r');
         linkedList.addLast('a');
@@ -161,7 +166,7 @@ public class SinglyLinkedList<E>{
         linkedList.addLast('t');
         System.out.println("Original List: ");
         linkedList.printLinkedList();
-        linkedList.reverseList(linkedList,linkedList.head,null);
+        linkedList.reverseList(linkedList.head,null);
         System.out.println("\nAfter reverse: ");
         linkedList.printLinkedList();
 
