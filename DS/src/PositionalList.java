@@ -10,6 +10,6 @@ public interface PositionalList<E>{
     Position<E> addBefore(Position<E> p,E e) throws IllegalArgumentException;
     Position<E> addAfter(Position<E> p,E e) throws IllegalArgumentException;
     E set(Position<E> p,E e) throws IllegalArgumentException;
-    E remove(Position<E> p,E e) throws IllegalArgumentException;
+    E remove(Position<E> p) throws IllegalArgumentException;
     void printPositionalList();
 }
