@@ -159,27 +159,39 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         }
         System.out.println("]");
     }
-
+    public void join(LinkedPositionalList<E> list2){
+        trailer.getPrev().setNext(list2.header.getNext());
+        list2.header.getNext().setPrev(trailer.getPrev());
+        trailer = list2.trailer;
+    }
     public static void main(String[] args) {
         PositionalList<Integer> positionalList = new LinkedPositionalList<>();
         Scanner keyboard= new Scanner(System.in);
-        System.out.print("Enter item you want to store: ");
-        int item = keyboard.nextInt();
-        Position<Integer> positionItem = positionalList.addLast(item);
-        positionalList.addLast(2);
-        positionalList.addLast(3);
-        positionalList.addLast(1);
-        positionalList.addFirst(4);
-        positionalList.addFirst(6);
-        System.out.print("Original List: ");
-        positionalList.printPositionalList();
-        System.out.print("Enter item you want to add before "+item+": ");
-        int beforeItem = keyboard.nextInt();
-        System.out.print("Enter item you want to add after "+item+": ");
-        int afterItem = keyboard.nextInt();
-        positionalList.addBefore(positionItem,beforeItem);
-        positionalList.addAfter(positionItem,afterItem);
-        System.out.print("\nFinal List: ");
-        positionalList.printPositionalList();
+//        System.out.print("Enter item you want to store: ");
+//        int item = keyboard.nextInt();
+//        Position<Integer> positionItem = positionalList.addLast(item);
+//        positionalList.addLast(2);
+//        positionalList.addLast(3);
+//        positionalList.addLast(1);
+//        positionalList.addFirst(4);
+//        positionalList.addFirst(6);
+//        System.out.print("Original List: ");
+//        positionalList.printPositionalList();
+//        System.out.print("Enter item you want to add before "+item+": ");
+//        int beforeItem = keyboard.nextInt();
+//        System.out.print("Enter item you want to add after "+item+": ");
+//        int afterItem = keyboard.nextInt();
+//        positionalList.addBefore(positionItem,beforeItem);
+//        positionalList.addAfter(positionItem,afterItem);
+//        System.out.print("\nFinal List: ");
+//        positionalList.printPositionalList();
+        LinkedPositionalList<Integer> list1 = new LinkedPositionalList<>();
+        list1.addLast(1);
+        list1.addLast(2);
+        LinkedPositionalList<Integer> list2 = new LinkedPositionalList<>();
+        list1.addLast(3);
+        list1.addLast(4);
+        list1.join(list2);
+        list1.printPositionalList();
     }
 }

@@ -119,7 +119,36 @@ public class SinglyLinkedList<E>{
                 break;
         }
     }
+    public Node<E>[] findLastTwo(){
+        Node<E>[] list = new Node[2];
+        Node<E> oneBeforeLast = null;
+        Node<E> twoBeforeLast = null;
+        Node<E> current = head;
+        for(int i = 0 ; i < size();i++){
 
+            if(current != null && current.getNext() != null && current.getNext().getNext() == tail){
+                twoBeforeLast = current;
+                oneBeforeLast = current.getNext();
+                list[0] = twoBeforeLast;
+                list[1] = oneBeforeLast;
+                break;
+            }
+            current = current.getNext();
+        }
+        return list;
+    }
+    public Node<E> findThridFromLast(){
+        Node<E> current = head;
+        Node<E> answer = null;
+        for(int i = 0 ; i < size();i++){
+            if(current != null && current.getNext() != null && current.getNext().getNext() == tail){
+                answer =current;
+                break;
+            }
+            current = current.getNext();
+        }
+        return answer;
+    }
     public void printLinkedList(){
         Node<E> current = head;
         System.out.print("[");
@@ -158,17 +187,18 @@ public class SinglyLinkedList<E>{
         linkedList.addLast('r');
         linkedList.addLast('a');
         linkedList.addLast('v');
-        linkedList.addLast('a');
-        linkedList.addLast('b');
-        linkedList.addLast('a');
-        linkedList.addLast('r');
-        linkedList.addLast('a');
-        linkedList.addLast('t');
-        System.out.println("Original List: ");
-        linkedList.printLinkedList();
-        linkedList.reverseList(linkedList.head,null);
-        System.out.println("\nAfter reverse: ");
-        linkedList.printLinkedList();
+//        linkedList.addLast('a');
+//        linkedList.addLast('b');
+//        linkedList.addLast('a');
+//        linkedList.addLast('r');
+//        linkedList.addLast('a');
+//        linkedList.addLast('t');
+//        System.out.println("Original List: ");
+//        linkedList.printLinkedList();
+//        linkedList.reverseList(linkedList.head,null);
+//        System.out.println("\nAfter reverse: ");
+//        linkedList.printLinkedList();
+        System.out.println(linkedList.findThridFromLast());
 
     }
     public Node<E> getHead(){
