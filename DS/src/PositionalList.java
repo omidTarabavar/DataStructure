@@ -12,4 +12,5 @@ public interface PositionalList<E>{
     E set(Position<E> p,E e) throws IllegalArgumentException;
     E remove(Position<E> p) throws IllegalArgumentException;
     void printPositionalList();
+    public Iterable<Position<E>> positions();
 }

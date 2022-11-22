@@ -31,7 +31,7 @@ public class SinglyLinkedPositionalList<E> implements PositionalList<E>,Iterable
         }
     }
 
-    public class PositionIterable implements Iterable<Position<E>>{
+    private class PositionIterable implements Iterable<Position<E>>{
 
         @Override
         public Iterator<Position<E>> iterator() {
