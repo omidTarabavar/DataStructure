@@ -133,7 +133,12 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         node.setElement(e);
         return answer;
     }
-
+    public void merge(LinkedPositionalList<E> list2){
+        this.trailer.getPrev().setNext(validate(list2.first()));
+        validate(list2.first()).setPrev(trailer.getPrev());
+        this.trailer = list2.trailer;
+        size += list2.size();
+    }
     @Override
     public E remove(Position<E> p) throws IllegalArgumentException {
         Node<E> node = validate(p);
@@ -189,9 +194,9 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
         list1.addLast(1);
         list1.addLast(2);
         LinkedPositionalList<Integer> list2 = new LinkedPositionalList<>();
-        list1.addLast(3);
-        list1.addLast(4);
-        list1.join(list2);
+        list2.addLast(3);
+        list2.addLast(4);
+        list1.merge(list2);
         list1.printPositionalList();
     }
 }

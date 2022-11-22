@@ -33,7 +33,6 @@ import java.util.List;
             count ++;
         return count;
     }
-
     @Override
     public Iterable<Position<E>> children(Position<E> p) throws IllegalArgumentException {
         List<Position<E>> snapshot = new ArrayList<>(2);

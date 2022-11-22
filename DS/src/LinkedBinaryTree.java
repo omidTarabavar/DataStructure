@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class LinkedBinaryTree <E> extends AbstractBinaryTree<E>{
     protected static class Node<E> implements Position<E>{
         private E element;
@@ -156,7 +159,18 @@ public class LinkedBinaryTree <E> extends AbstractBinaryTree<E>{
         node.setParent(node);
         return temp;
     }
-
+    public void pruneSubtree(Position<E> p){
+        for(Position<E> pos:preorder()){
+            if(pos.equals(p)){
+                for(Position<E> pos2:postorder(pos)){
+                    if(isExternal(pos2)){
+                        remove(pos2);
+                    }
+                }
+                return;
+            }
+        }
+    }
     public static void main(String[] args) {
         LinkedBinaryTree<String> expTree = new LinkedBinaryTree<>();
         expTree.addRoot("+");
@@ -168,6 +182,10 @@ public class LinkedBinaryTree <E> extends AbstractBinaryTree<E>{
         Position<String> node3 = expTree.addRight(node2,"/");
         expTree.addLeft(node3,"20");
         expTree.addRight(node3,"2");
+        for(String input:expTree){
+            System.out.println(input);
+        }
+        expTree.pruneSubtree(node3);
         for(String input:expTree){
             System.out.println(input);
         }
