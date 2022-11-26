@@ -160,19 +160,16 @@ public class LinkedBinaryTree <E> extends AbstractBinaryTree<E>{
         return temp;
     }
     public void pruneSubtree(Position<E> p){
-        for(Position<E> pos:preorder()){
-            if(pos.equals(p)){
-                for(Position<E> pos2:postorder(pos)){
-                    if(isExternal(pos2)){
-                        remove(pos2);
-                    }
-                }
-                return;
-            }
+        for(Position<E> child: children(p)){
+            pruneSubtree(child);
+        }
+        if(isExternal(p)){
+            remove(p);
         }
     }
     public static void main(String[] args) {
         LinkedBinaryTree<String> expTree = new LinkedBinaryTree<>();
+        System.out.println("Traversal algorithm: inorder");
         expTree.addRoot("+");
         Position<String> node1 = expTree.addLeft(expTree.root(),"*");
         Position<String> node2 = expTree.addRight(expTree.root(), "-");
@@ -185,9 +182,13 @@ public class LinkedBinaryTree <E> extends AbstractBinaryTree<E>{
         for(String input:expTree){
             System.out.println(input);
         }
+        System.out.println("size: "+expTree.size());
+        System.out.println();
         expTree.pruneSubtree(node3);
         for(String input:expTree){
             System.out.println(input);
         }
+        System.out.println("size after remove: "+expTree.size());
+
     }
 }

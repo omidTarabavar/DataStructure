@@ -41,4 +41,20 @@ public class UnsortedPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
         if(list.isEmpty()) return null;
         return list.remove(findMin());
     }
+
+    @Override
+    public Iterable<Position<Entry<K, V>>> positions() {
+        return list.positions();
+    }
+
+    @Override
+    public void printPriorityQueue() {
+        int size = size();
+        for(int i = 0 ; i < size ; i++){
+            Entry<K,V> entry = removeMin();
+            System.out.println(entry.getValue()+" -> "+entry.getKey());
+            printPriorityQueue();
+            insert(entry.getKey(), entry.getValue());
+        }
+    }
 }
