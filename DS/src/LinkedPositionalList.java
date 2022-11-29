@@ -107,7 +107,7 @@ public class LinkedPositionalList<E> implements PositionalList<E>,Iterable<E> {
         trailer = new Node<>(null,header,null);
         header.setNext(trailer);
     }
-    private Node<E> validate(Position<E> p) throws IllegalArgumentException{
+    public Node<E> validate(Position<E> p) throws IllegalArgumentException{
         if(!(p instanceof Node)) throw new IllegalArgumentException("Invalid p");
         Node<E> node =(Node<E>) p;
         if(node.getNext() == null)
@@ -226,9 +226,21 @@ public class LinkedPositionalList<E> implements PositionalList<E>,Iterable<E> {
         list2.header.getNext().setPrev(trailer.getPrev());
         trailer = list2.trailer;
     }
+    public static Node<Integer> temp(Position<Integer> p){
+        if(!(p instanceof Node)) throw new IllegalArgumentException("Invalid p");
+        Node<Integer> node =(Node<Integer>) p;
+        if(node.getNext() == null)
+            throw new IllegalArgumentException("p is no longer in the list");
+        return node;
+    }
+
     public static void main(String[] args) {
         PositionalList<Integer> positionalList = new LinkedPositionalList<>();
         Scanner keyboard= new Scanner(System.in);
+        Position<Integer> p =positionalList.addFirst(1);
+        positionalList.remove(p);
+        System.out.println();
+        System.out.println(temp(p));
 //        System.out.print("Enter item you want to store: ");
 //        int item = keyboard.nextInt();
 //        Position<Integer> positionItem = positionalList.addLast(item);
@@ -247,13 +259,13 @@ public class LinkedPositionalList<E> implements PositionalList<E>,Iterable<E> {
 //        positionalList.addAfter(positionItem,afterItem);
 //        System.out.print("\nFinal List: ");
 //        positionalList.printPositionalList();
-        LinkedPositionalList<Integer> list1 = new LinkedPositionalList<>();
-        list1.addLast(1);
-        list1.addLast(2);
-        LinkedPositionalList<Integer> list2 = new LinkedPositionalList<>();
-        list2.addLast(3);
-        list2.addLast(4);
-        list1.merge(list2);
-        list1.printPositionalList();
+//        LinkedPositionalList<Integer> list1 = new LinkedPositionalList<>();
+//        list1.addLast(1);
+//        list1.addLast(2);
+//        LinkedPositionalList<Integer> list2 = new LinkedPositionalList<>();
+//        list2.addLast(3);
+//        list2.addLast(4);
+//        list1.merge(list2);
+//        list1.printPositionalList();
     }
 }
