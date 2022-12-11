@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public abstract class AbstractPriorityQueue<K,V> implements PriorityQueue<K,V> {
+public abstract class AbstractPriorityQueueMax<K,V> implements MaxPriorityQueue<K,V>{
     protected static class PQEntry<K,V> implements Entry<K,V>{
         private K k;
         private V v;
@@ -17,24 +17,26 @@ public abstract class AbstractPriorityQueue<K,V> implements PriorityQueue<K,V> {
         public K getKey() {
             return k;
         }
-        @Override
-        public String toString() {
-            return ""+v;
-        }
         protected void setKey(K key){
             k = key;
         }
         protected void setValue(V value){
             v = value;
         }
+
+        @Override
+        public String toString() {
+            return ""+v;
+        }
     }
     private Comparator<K> comp;
-    protected AbstractPriorityQueue(Comparator<K> c){
+    protected AbstractPriorityQueueMax(Comparator<K> c){
         comp = c;
     }
-    protected AbstractPriorityQueue(){
+    protected AbstractPriorityQueueMax(){
         this(new DefaultComparator<>());
     }
+
     protected int compare(Entry<K,V> a,Entry<K,V> b){
         return comp.compare(a.getKey(),b.getKey());
     }
@@ -49,9 +51,5 @@ public abstract class AbstractPriorityQueue<K,V> implements PriorityQueue<K,V> {
     @Override
     public boolean isEmpty() {
         return size() == 0;
-    }
-
-    public static void main(String[] args) {
-        System.out.println(1);
     }
 }
