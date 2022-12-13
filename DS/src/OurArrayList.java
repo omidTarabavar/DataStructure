@@ -1,9 +1,9 @@
-public class ArrayList<E> implements List<E>{
+public class OurArrayList<E> implements List<E>{
     public static final int CAPACITY = 16;
     private E[] data;
     private int size = 0;
-    public ArrayList(){this(CAPACITY);}
-    public ArrayList(int capacity){
+    public OurArrayList(){this(CAPACITY);}
+    public OurArrayList(int capacity){
         data = (E[]) new Object[capacity];
 
     }
