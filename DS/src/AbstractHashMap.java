@@ -66,7 +66,7 @@ public abstract class AbstractHashMap<K,V> extends AbstractMap<K,V> {
             do {
                 int scale = rand.nextInt(prime-1)+1;
                 int shift = rand.nextInt(prime);
-                num = ((componentSumOfString(name)*scale)+shift)%hashArray.length;
+                num = (((componentSumOfString(name)*scale)+shift)%prime)%hashArray.length;
             }while (collisionChecker.contains(num));
             collisionChecker.add(num);
             hashArray[num] = name;
